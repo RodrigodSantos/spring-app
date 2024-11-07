@@ -16,7 +16,6 @@ public class VeiculoController {
     
     @PostMapping("/post")  
     public UUID create(@RequestBody VeiculoModel veiculo) {
-        veiculo.id = UUID.randomUUID();
         return veiculo.getId();
     }
 
