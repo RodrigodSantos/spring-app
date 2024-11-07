@@ -2,6 +2,9 @@ package com.gomes.spring_app.models;
 
 import java.util.UUID;
 
+import lombok.Data;
+
+@Data
 public class VeiculoModel {
     
     public UUID id;

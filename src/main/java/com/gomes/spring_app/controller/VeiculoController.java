@@ -10,16 +10,14 @@ import java.util.UUID;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
 @RestController
 @RequestMapping("/veiculo")
 public class VeiculoController {
     
     @PostMapping("/post")  
-    public VeiculoModel create(@RequestBody VeiculoModel veiculo) {
+    public UUID create(@RequestBody VeiculoModel veiculo) {
         veiculo.id = UUID.randomUUID();
-        return veiculo;
+        return veiculo.getId();
     }
 
 }
