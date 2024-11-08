@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gomes.spring_app.models.VeiculoModel;
 
-import java.util.UUID;
-
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
@@ -15,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class VeiculoController {
     
     @PostMapping("/post")  
-    public UUID create(@RequestBody VeiculoModel veiculo) {
-        return veiculo.getId();
+    public VeiculoModel create(@RequestBody VeiculoModel veiculo) {
+        return veiculo;
     }
 
 }

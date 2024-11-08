@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -15,7 +14,6 @@ import lombok.Data;
 public class VeiculoModel {
     
     @Id
-    @GeneratedValue(generator = "UUID")
     public UUID id;
 
     public String marca;
@@ -30,4 +28,8 @@ public class VeiculoModel {
     @CreationTimestamp
     public LocalDateTime created_at;
 
+    public VeiculoModel() {
+        this.id = UUID.randomUUID(); // Gera o UUID manualmente
+        this.created_at = LocalDateTime.now();
+    }
 }
