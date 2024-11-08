@@ -1,4 +1,4 @@
-package com.gomes.spring_app;
+package com.example.demo.gomes.spring_app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
