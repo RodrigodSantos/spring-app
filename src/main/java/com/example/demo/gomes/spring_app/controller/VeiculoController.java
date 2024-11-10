@@ -28,8 +28,8 @@ public class VeiculoController {
     
     
     @PostMapping("/post")  
-    public VeiculoModel create(@RequestBody VeiculoModel veiculo) {
-        return veiculo;
+    public VeiculoModel save(@RequestBody VeiculoModel veiculo) {
+        return veiculoService.save(veiculo);
     }
 
 }

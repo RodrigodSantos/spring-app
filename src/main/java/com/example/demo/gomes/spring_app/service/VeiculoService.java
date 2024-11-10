@@ -18,4 +18,8 @@ public class VeiculoService {
         return veiculoRepository.findAll();
     }
 
+    public VeiculoModel save(VeiculoModel veiculo) {
+        return veiculoRepository.save(veiculo);
+    }
+
 }
