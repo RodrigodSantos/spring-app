@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/veiculo")
@@ -25,11 +27,19 @@ public class VeiculoController {
     public List<VeiculoModel> getVeiculos() {
         return veiculoService.findAll();
     }
-    
+
+    @GetMapping("/{id}")
+    public VeiculoModel getVeiculo(@PathVariable Long id) {
+        return veiculoService.findById(id);
+    }
     
     @PostMapping("/post")  
     public VeiculoModel save(@RequestBody VeiculoModel veiculo) {
         return veiculoService.save(veiculo);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        veiculoService.delete(id);
+    }
 }

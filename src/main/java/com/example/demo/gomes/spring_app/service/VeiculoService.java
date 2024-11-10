@@ -18,8 +18,16 @@ public class VeiculoService {
         return veiculoRepository.findAll();
     }
 
+    public VeiculoModel findById(Long id) {
+        return veiculoRepository.findById(id).get();
+    }
+
     public VeiculoModel save(VeiculoModel veiculo) {
         return veiculoRepository.save(veiculo);
+    }
+
+    public void delete(Long id) {
+        veiculoRepository.deleteById(id);
     }
 
 }
