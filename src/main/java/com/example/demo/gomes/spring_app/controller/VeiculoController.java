@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/veiculo")
@@ -36,6 +38,12 @@ public class VeiculoController {
     @PostMapping("/post")  
     public VeiculoModel save(@RequestBody VeiculoModel veiculo) {
         return veiculoService.save(veiculo);
+    }
+
+    @PutMapping("/{id}")
+    public VeiculoModel update(@PathVariable Long id, @RequestBody VeiculoModel veiculo) {
+        veiculoService.findById(id);
+        return veiculoService.update(id, veiculo);
     }
 
     @DeleteMapping("/{id}")

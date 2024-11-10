@@ -26,8 +26,14 @@ public class VeiculoService {
         return veiculoRepository.save(veiculo);
     }
 
+    public VeiculoModel update(Long id, VeiculoModel veiculo) {
+        veiculo.setId(id);
+        return veiculoRepository.save(veiculo);
+    }
+
     public void delete(Long id) {
         veiculoRepository.deleteById(id);
+        return ;
     }
 
 }
