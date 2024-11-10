@@ -1,6 +1,7 @@
 package com.example.demo.gomes.spring_app.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class VeiculoService {
         return veiculoRepository.findAll();
     }
 
-    public VeiculoModel findById(Long id) {
+    public VeiculoModel findById(UUID id) {
         return veiculoRepository.findById(id).get();
     }
 
@@ -26,12 +27,12 @@ public class VeiculoService {
         return veiculoRepository.save(veiculo);
     }
 
-    public VeiculoModel update(Long id, VeiculoModel veiculo) {
+    public VeiculoModel update(UUID id, VeiculoModel veiculo) {
         veiculo.setId(id);
         return veiculoRepository.save(veiculo);
     }
 
-    public void delete(Long id) {
+    public void delete(UUID id) {
         veiculoRepository.deleteById(id);
         return ;
     }

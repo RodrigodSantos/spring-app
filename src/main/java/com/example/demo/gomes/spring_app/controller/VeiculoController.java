@@ -10,6 +10,7 @@ import com.example.demo.gomes.spring_app.service.VeiculoService;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +32,7 @@ public class VeiculoController {
     }
 
     @GetMapping("/{id}")
-    public VeiculoModel getVeiculo(@PathVariable Long id) {
+    public VeiculoModel getVeiculo(@PathVariable UUID id) {
         return veiculoService.findById(id);
     }
     
@@ -41,13 +42,13 @@ public class VeiculoController {
     }
 
     @PutMapping("/{id}")
-    public VeiculoModel update(@PathVariable Long id, @RequestBody VeiculoModel veiculo) {
+    public VeiculoModel update(@PathVariable UUID id, @RequestBody VeiculoModel veiculo) {
         veiculoService.findById(id);
         return veiculoService.update(id, veiculo);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public void delete(@PathVariable UUID id) {
         veiculoService.delete(id);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.demo.gomes.spring_app.models;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class VeiculoModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
+    public UUID id;
 
     public String marca;
     public String modelo;
