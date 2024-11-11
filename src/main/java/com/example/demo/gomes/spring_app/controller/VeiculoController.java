@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.gomes.spring_app.models.VeiculoModel;
 import com.example.demo.gomes.spring_app.service.VeiculoService;
 
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
@@ -36,7 +36,7 @@ public class VeiculoController {
         return veiculoService.findById(id);
     }
     
-    @PostMapping("/post")  
+    @PostMapping("")  
     public VeiculoModel save(@RequestBody VeiculoModel veiculo) {
         return veiculoService.save(veiculo);
     }
