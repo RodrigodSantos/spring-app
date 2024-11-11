@@ -34,7 +34,6 @@ public class ProprietarioService {
 
     public void delete(UUID id) {
         proprietarioRepository.deleteById(id);
-        return ;
+        return ;    
     }
-
 }
