@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,7 +34,7 @@ public class ProprietarioModel {
     public String sexo;
     public String status;
 
-    @OneToMany(mappedBy = "proprietario")
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
     private List<EnderecoModel> enderecos;
 
