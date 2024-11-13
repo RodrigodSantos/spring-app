@@ -3,8 +3,6 @@ package com.example.demo.gomes.spring_app.models;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,19 +21,16 @@ public class ProprietarioModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID id;
+    private UUID id;
     
-    public String nome;
-    public String cpf;
-    public String endereco;
-    public String telefone;
-    public String email;
-    public String dataNascimento;
-    public String sexo;
-    public String status;
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private String email;
+    private String dataNascimento;
+    private String sexo;
+    private String status;
 
-    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonManagedReference
-    private List<EnderecoModel> enderecos;
-
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
+    private List<ProprietarioEnderecoModel> enderecos;
 }
