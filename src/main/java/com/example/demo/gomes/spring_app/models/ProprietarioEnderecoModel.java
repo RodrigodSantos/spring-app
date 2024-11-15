@@ -2,6 +2,8 @@ package com.example.demo.gomes.spring_app.models;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class ProprietarioEnderecoModel {
     private UUID id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "proprietario_id")
     private ProprietarioModel proprietario;
 
