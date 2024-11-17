@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.gomes.spring_app.models.PessoaModel;
 import com.example.demo.gomes.spring_app.models.TecnicoModel;
-import com.example.demo.gomes.spring_app.service.PessoaService;
 import com.example.demo.gomes.spring_app.service.TecnicoService;
 
 @RestController
@@ -24,9 +23,6 @@ public class TecnicoController {
     
     @Autowired
     private TecnicoService tecnicoService;
-
-    @Autowired
-    private PessoaService pessoaService;
 
     @GetMapping()
     public List<TecnicoModel> findAll() {
@@ -40,22 +36,17 @@ public class TecnicoController {
 
     @PostMapping("")
     public TecnicoModel save(@RequestBody PessoaModel pessoa) {
-        pessoaService.save(pessoa);
-        TecnicoModel tecnico = new TecnicoModel();
-        tecnico.setPessoa(pessoa);
-        return tecnicoService.save(tecnico);
+        return tecnicoService.save(pessoa);
     }
 
     @PutMapping("/{id}")
-    public TecnicoModel update(@PathVariable UUID id,@RequestBody TecnicoModel tecnico) {
-        tecnico.setId(id);
-        return tecnicoService.update(id, tecnico);
+    public TecnicoModel update(@PathVariable UUID id,@RequestBody PessoaModel pessoa) {
+        return tecnicoService.update(id, pessoa);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable UUID id) {
-        PessoaModel pessoa = tecnicoService.findById(id).getPessoa();
         tecnicoService.delete(id);
-        pessoaService.delete(pessoa.getId());
+        return ;
     }
 }
