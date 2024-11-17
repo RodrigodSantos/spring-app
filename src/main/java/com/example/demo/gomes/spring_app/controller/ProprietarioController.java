@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.gomes.spring_app.models.PessoaModel;
 import com.example.demo.gomes.spring_app.models.ProprietarioModel;
 import com.example.demo.gomes.spring_app.service.ProprietarioService;
 
@@ -36,14 +37,13 @@ public class ProprietarioController {
     }
 
     @PostMapping("")
-    public ProprietarioModel save(@RequestBody ProprietarioModel proprietario) {
+    public ProprietarioModel save(@RequestBody PessoaModel proprietario) {
         return proprietarioService.save(proprietario);
     }
 
     @PutMapping("/{id}")
-    public ProprietarioModel update(@PathVariable UUID id,@RequestBody ProprietarioModel proprietario) {
-        proprietarioService.findById(id);
-        return proprietarioService.update(id, proprietario);
+    public ProprietarioModel update(@PathVariable UUID id,@RequestBody PessoaModel pessoa) {
+        return proprietarioService.update(id, pessoa);
     }
 
     @DeleteMapping("/{id}")

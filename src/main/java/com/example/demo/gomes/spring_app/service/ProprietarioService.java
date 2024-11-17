@@ -6,7 +6,9 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.gomes.spring_app.models.PessoaModel;
 import com.example.demo.gomes.spring_app.models.ProprietarioModel;
+import com.example.demo.gomes.spring_app.repository.IPessoa;
 import com.example.demo.gomes.spring_app.repository.IProprietario;
 
 @Service
@@ -14,6 +16,9 @@ public class ProprietarioService {
     
     @Autowired
     private IProprietario proprietarioRepository;
+
+    @Autowired
+    private IPessoa pessoaRepository;
 
     public List<ProprietarioModel> findAll() {
         return proprietarioRepository.findAll();
@@ -23,17 +28,24 @@ public class ProprietarioService {
         return proprietarioRepository.findById(id).get();
     }
 
-    public ProprietarioModel save(ProprietarioModel proprietario) {
+    public ProprietarioModel save(PessoaModel pessoa) {
+        pessoaRepository.save(pessoa);
+        ProprietarioModel proprietario = new ProprietarioModel();
+        proprietario.setPessoa(pessoa);
         return proprietarioRepository.save(proprietario);
     }
 
-    public ProprietarioModel update(UUID id, ProprietarioModel proprietario) {
-        proprietario.setId(id);
-        return proprietarioRepository.save(proprietario);
+    public ProprietarioModel update(UUID id, PessoaModel pessoa) {
+        pessoa.setId(proprietarioRepository.findById(id).get().getPessoa().getId());
+        pessoaRepository.save(pessoa);
+        return proprietarioRepository.findById(id).get();
     }
 
     public void delete(UUID id) {
+        PessoaModel pessoa = new PessoaModel();
+        pessoa = proprietarioRepository.findById(id).get().getPessoa();
         proprietarioRepository.deleteById(id);
+        pessoaRepository.deleteById(pessoa.getId());
         return ;    
     }
 }
