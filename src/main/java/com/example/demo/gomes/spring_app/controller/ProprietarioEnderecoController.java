@@ -43,10 +43,8 @@ public class ProprietarioEnderecoController {
 
     @PostMapping("")
     public ProprietarioEnderecoModel save(@RequestBody ProprietarioEnderecoModel proprietarioEndereco) {
-    
         proprietarioEndereco.setProprietario(proprietarioService.findById(proprietarioEndereco.getProprietario().getId()));
         proprietarioEndereco.setEndereco(enderecoService.findById(proprietarioEndereco.getEndereco().getId()));
-        
         return proprietarioEnderecoService.save(proprietarioEndereco);
     }
 
