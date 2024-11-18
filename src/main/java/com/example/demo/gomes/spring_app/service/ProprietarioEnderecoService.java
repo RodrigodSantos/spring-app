@@ -15,6 +15,12 @@ public class ProprietarioEnderecoService {
     @Autowired
     private IProprietarioEndereco proprietarioEnderecoRepository;
 
+    @Autowired
+    private ProprietarioService proprietarioService;
+
+    @Autowired
+    private EnderecoService enderecoService;
+
     public List<ProprietarioEnderecoModel> findAll() {
         return proprietarioEnderecoRepository.findAll();
     }
@@ -24,13 +30,19 @@ public class ProprietarioEnderecoService {
     }
 
     public ProprietarioEnderecoModel save(ProprietarioEnderecoModel proprietarioEndereco) {
+        proprietarioEndereco.setProprietario(proprietarioService.findById(proprietarioEndereco.getProprietario().getId()));
+        proprietarioEndereco.setEndereco(enderecoService.findById(proprietarioEndereco.getEndereco().getId()));
         return proprietarioEnderecoRepository.save(proprietarioEndereco);
     }
 
-    public ProprietarioEnderecoModel update(UUID id, ProprietarioEnderecoModel proprietarioEndereco) {
-        proprietarioEndereco.setId(id);
-        return proprietarioEnderecoRepository.save(proprietarioEndereco);
-    }
+    // public ProprietarioEnderecoModel update(UUID id, EnderecoModel endereco) {
+    //     ProprietarioEnderecoModel proprietarioEndereco = new ProprietarioEnderecoModel();
+    //     proprietarioEndereco.setId(id);
+    //     endereco.setId(proprietarioEnderecoRepository.findById(id).get().getEndereco().getId());
+    //     proprietarioEndereco.setEndereco(endereco);
+
+    //     return "";
+    // }
 
     public void delete(UUID id) {
         proprietarioEnderecoRepository.deleteById(id);
