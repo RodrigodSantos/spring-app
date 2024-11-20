@@ -35,15 +35,6 @@ public class ProprietarioEnderecoService {
         return proprietarioEnderecoRepository.save(proprietarioEndereco);
     }
 
-    // public ProprietarioEnderecoModel update(UUID id, EnderecoModel endereco) {
-    //     ProprietarioEnderecoModel proprietarioEndereco = new ProprietarioEnderecoModel();
-    //     proprietarioEndereco.setId(id);
-    //     endereco.setId(proprietarioEnderecoRepository.findById(id).get().getEndereco().getId());
-    //     proprietarioEndereco.setEndereco(endereco);
-
-    //     return "";
-    // }
-
     public void delete(UUID id) {
         proprietarioEnderecoRepository.deleteById(id);
         return ;    
