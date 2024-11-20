@@ -31,4 +31,7 @@ public class ProprietarioModel {
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
     private List<ProprietarioEnderecoModel> enderecos;
+
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
+    private List<ProprietarioVeiculoModel> veiculos;
 }
