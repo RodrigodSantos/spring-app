@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,10 @@ public class RepresentacaoTecModel {
     private String email;
     private String observacao;
     private String status;
+
+    @OneToOne
+    @JoinColumn(name = "agenda_id")
+    private AgendaModel agenda;
     
     private LocalDateTime dataCadastro = LocalDateTime.now();
     private LocalDateTime dataAlteracao = LocalDateTime.now();
