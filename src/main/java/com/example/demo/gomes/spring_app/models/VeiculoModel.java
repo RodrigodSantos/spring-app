@@ -18,14 +18,15 @@ public class VeiculoModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID id;
+    private UUID id;
 
-    public String marca;
-    public String modelo;
-    public String cor;
-    public int ano;
-    public String placa;
-    public String chassi;
-    public String renavam;
-    public String categoria;
+    private String marca;
+    private String modelo;
+    private String cor;
+    private int ano;
+    private String placa;
+    private String chassi;
+    private String renavam;
+    private String categoria;
+    private boolean delete = false;
 }
