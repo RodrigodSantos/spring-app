@@ -32,6 +32,7 @@ public class RepresentacaoTecModel {
     private String email;
     private String observacao;
     private String status;
+    private boolean delete = false;
 
     @OneToOne
     @JoinColumn(name = "agenda_id")
