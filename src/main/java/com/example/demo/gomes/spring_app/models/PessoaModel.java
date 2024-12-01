@@ -27,6 +27,6 @@ public class PessoaModel {
     private String dataNascimento;
     private String sexo;
     private String status;
-    private boolean delete = false;
+    private boolean isVisible = true;
     
 }

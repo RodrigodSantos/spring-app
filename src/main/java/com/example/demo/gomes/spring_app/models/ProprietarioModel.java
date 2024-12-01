@@ -37,4 +37,6 @@ public class ProprietarioModel {
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
     private List<ProprietarioVeiculoModel> veiculos;
+
+    private boolean isVisible = true;
 }

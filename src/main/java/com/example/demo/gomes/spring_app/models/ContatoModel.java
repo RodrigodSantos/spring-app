@@ -22,6 +22,6 @@ public class ContatoModel {
     
     private String tipo;
     private String valor;
-    private Boolean isVisible = false;
+    private boolean isVisible = true;
 
 }

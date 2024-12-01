@@ -32,4 +32,6 @@ public class ProprietarioContatoModel {
     @ManyToOne
     @JoinColumn(name = "contato_id")
     private ContatoModel contato;
+
+    private boolean isVisible = true;
 }

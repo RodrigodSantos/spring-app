@@ -28,6 +28,6 @@ public class EnderecoModel {
     private String cidade;
     private String estado;
     private String pais;
-    private boolean delete = false;
+    private boolean isVisible = true;
     
 }

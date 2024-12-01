@@ -28,5 +28,6 @@ public class VeiculoModel {
     private String chassi;
     private String renavam;
     private String categoria;
-    private boolean delete = false;
+    private boolean isVisible = true;
+    
 }

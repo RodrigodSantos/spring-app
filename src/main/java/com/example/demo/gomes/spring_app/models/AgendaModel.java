@@ -31,8 +31,10 @@ public class AgendaModel {
     @OneToOne
     @JoinColumn(name = "representacao_tec_id")
     private RepresentacaoTecModel representacaoTec;
-
+    
     @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL)
     private List<AgendaDiaModel> dias;
+
+    private boolean isVisible = true;
 
 }

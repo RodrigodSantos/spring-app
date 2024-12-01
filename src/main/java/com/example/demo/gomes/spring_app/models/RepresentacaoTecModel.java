@@ -30,14 +30,16 @@ public class RepresentacaoTecModel {
     private String email;
     private String observacao;
     private String status;
-    private boolean delete = false;
     
     private LocalDateTime dataCadastro = LocalDateTime.now();
     private LocalDateTime dataAlteracao = LocalDateTime.now();
-
+    
     @OneToMany(mappedBy = "representacaoTec", cascade = CascadeType.ALL)
     private List<AgendaModel> agenda;
-
+    
     @OneToMany(mappedBy = "representacaoTec", cascade = CascadeType.ALL)
     private List<RepresentacaoTecEnderecoModel> enderecos;
+    
+    private boolean isVisible = true;
+    
 }
