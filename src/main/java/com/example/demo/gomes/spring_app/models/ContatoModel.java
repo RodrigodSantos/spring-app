@@ -11,23 +11,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "tb_veiculo")
-public class VeiculoModel {
-    
+@AllArgsConstructor
+@Entity(name = "tb_contato")
+public class ContatoModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    private String marca;
-    private String modelo;
-    private String cor;
-    private int ano;
-    private String placa;
-    private String chassi;
-    private String renavam;
-    private String categoria;
-    private boolean isVisible = true;
     
+    private String tipo;
+    private String valor;
+    private boolean isVisible = true;
+
 }

@@ -32,4 +32,6 @@ public class ProprietarioVeiculoModel {
     @ManyToOne
     @JoinColumn(name = "veiculo_id")
     private VeiculoModel veiculo;
+
+    private boolean isVisible = true;
 }

@@ -30,8 +30,13 @@ public class ProprietarioModel {
     private PessoaModel pessoa;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
+    private List<ProprietarioContatoModel> contatos;
+
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
     private List<ProprietarioEnderecoModel> enderecos;
 
     @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL)
     private List<ProprietarioVeiculoModel> veiculos;
+
+    private boolean isVisible = true;
 }

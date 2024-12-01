@@ -32,4 +32,6 @@ public class TecnicoModel {
     @OneToMany(mappedBy = "tecnico", cascade = CascadeType.ALL)
     private List<TecnicoEnderecoModel> enderecos;
 
+    private boolean isVisible = true;
+
 }

@@ -27,10 +27,11 @@ public class AgendaDiaModel {
     private Integer capacidadeManha;
     private Integer capacidadeTarde;
     private Integer capacidadeNoite;
-    private boolean delete = false;
-
+    
     @JsonBackReference
     @ManyToOne
     private AgendaModel agenda;
-
+    
+    private boolean isVisible = true;
+    
 }

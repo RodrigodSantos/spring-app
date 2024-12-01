@@ -32,4 +32,7 @@ public class TecnicoEnderecoModel {
     @ManyToOne
     @JoinColumn(name = "endereco_id")
     private EnderecoModel endereco;
+
+    private boolean isVisible = true;
+    
 }
