@@ -9,9 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,13 +31,12 @@ public class RepresentacaoTecModel {
     private String observacao;
     private String status;
     private boolean delete = false;
-
-    @OneToOne
-    @JoinColumn(name = "agenda_id")
-    private AgendaModel agenda;
     
     private LocalDateTime dataCadastro = LocalDateTime.now();
     private LocalDateTime dataAlteracao = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "representacaoTec", cascade = CascadeType.ALL)
+    private List<AgendaModel> agenda;
 
     @OneToMany(mappedBy = "representacaoTec", cascade = CascadeType.ALL)
     private List<RepresentacaoTecEnderecoModel> enderecos;
