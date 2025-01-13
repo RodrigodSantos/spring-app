@@ -8,24 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.gomes.spring_app.models.AgendamentoModel;
 import com.example.demo.gomes.spring_app.repository.IAgendamento;
-import com.example.demo.gomes.spring_app.repository.IEndereco;
-import com.example.demo.gomes.spring_app.repository.IRepresentacaoTec;
-import com.example.demo.gomes.spring_app.repository.IVeiculo;
 
 @Service
 public class AgendamentoService {
     
     @Autowired
     private IAgendamento agendamentoRepository;
-
-    @Autowired
-    private IVeiculo veiculoRepository;
-
-    @Autowired
-    private IEndereco enderecoRepository;
-
-    @Autowired
-    private IRepresentacaoTec representacaoTecRepository;
 
     public List<AgendamentoModel> findAll() {
         return agendamentoRepository.findAll();
@@ -36,19 +24,11 @@ public class AgendamentoService {
     }
 
     public AgendamentoModel save(AgendamentoModel agendamento) {
-
-        
-        // agendamento.setVeiculo(veiculoRepository.findById(agendamento.getVeiculo().getId()).get());
-        // agendamento.setEndereco(enderecoRepository.findById(agendamento.getEndereco().getId()).get());
-        // agendamento.setRepresentacaoTec(representacaoTecRepository.findById(agendamento.getRepresentacaoTec().getId()).get());
         return agendamentoRepository.save(agendamento);
     }
 
     public AgendamentoModel update(UUID id, AgendamentoModel agendamento) {
         agendamento.setId(id);
-        // agendamento.setVeiculo(veiculoRepository.findById(agendamento.getVeiculo().getId()).get());
-        // agendamento.setEndereco(enderecoRepository.findById(agendamento.getEndereco().getId()).get());
-        // agendamento.setRepresentacaoTec(representacaoTecRepository.findById(agendamento.getRepresentacaoTec().getId()).get());
         return agendamentoRepository.save(agendamento);
     }
 
