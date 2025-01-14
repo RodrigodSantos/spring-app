@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,11 @@ public class VeiculoModel {
     private String chassi;
     private String renavam;
     private String categoria;
+
+    @ManyToOne()
+    @JoinColumn(name = "proprietario_id")
+    private ProprietarioModel proprietario;
+
     private boolean isVisible = true;
     
 }
