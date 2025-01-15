@@ -32,8 +32,8 @@ public class AgendamentoModel {
     private EnderecoModel endereco;
 
     @ManyToOne
-    @JoinColumn(name = "representacao_tec_id")
-    private RepresentacaoTecModel representacaoTec;
+    @JoinColumn(name = "tecnico_id")
+    private TecnicoModel tecnico;
 
     private LocalDate data;
 
