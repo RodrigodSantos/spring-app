@@ -1,5 +1,6 @@
 package com.example.demo.gomes.spring_app.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,12 +16,30 @@ public class AgendamentoService {
     @Autowired
     private IAgendamento agendamentoRepository;
 
+    @Autowired
+    private VeiculoService veiculoRepository;
+
+    @Autowired
+    private TecnicoService tecnicoRepository;
+
     public List<AgendamentoModel> findAll() {
         return agendamentoRepository.findAll();
     }
 
     public AgendamentoModel findById(UUID id) {
         return agendamentoRepository.findById(id).get();
+    }
+
+    public List<AgendamentoModel> findByData(LocalDate date) {
+        return agendamentoRepository.findByData(date);
+    }
+
+    public List<AgendamentoModel> findByVeiculo(UUID veiculoId) {
+        return agendamentoRepository.findByVeiculo(veiculoRepository.findById(veiculoId));
+    }
+
+    public List<AgendamentoModel> findByTecnico(UUID tecnico) {
+        return agendamentoRepository.findByTecnico(tecnicoRepository.findById(tecnico));
     }
 
     public AgendamentoModel save(AgendamentoModel agendamento) {

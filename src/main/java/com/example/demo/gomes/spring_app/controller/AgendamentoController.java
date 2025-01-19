@@ -1,5 +1,6 @@
 package com.example.demo.gomes.spring_app.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +32,21 @@ public class AgendamentoController {
     @GetMapping("/{id}")
     public AgendamentoModel findById(@PathVariable UUID id) {
         return agendamentoService.findById(id);
+    }
+
+    @GetMapping("/date/{date}")
+    public List<AgendamentoModel> findByData(@PathVariable LocalDate date) {
+        return agendamentoService.findByData(date);
+    }
+
+    @GetMapping("/veiculo/{veiculoId}")
+    public List<AgendamentoModel> findByVeiculo(@PathVariable UUID veiculoId) {
+        return agendamentoService.findByVeiculo(veiculoId);
+    }
+
+    @GetMapping("/tecnico/{tecnicoId}")
+    public List<AgendamentoModel> findByTecnico(@PathVariable UUID tecnicoId) {
+        return agendamentoService.findByTecnico(tecnicoId);
     }
 
     @PostMapping("")
