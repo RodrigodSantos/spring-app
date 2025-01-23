@@ -30,7 +30,7 @@ public class AgendamentoController {
     }
 
     @GetMapping("/{id}")
-    public AgendamentoModel findById(@PathVariable UUID id) {
+    public AgendamentoModel findById(@PathVariable UUID id) throws Exception {
         return agendamentoService.findById(id);
     }
 

@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.gomes.spring_app.exceptions.InternalServerError;
 import com.example.demo.gomes.spring_app.models.AgendamentoModel;
 import com.example.demo.gomes.spring_app.repository.IAgendamento;
 
@@ -26,8 +27,10 @@ public class AgendamentoService {
         return agendamentoRepository.findAll();
     }
 
-    public AgendamentoModel findById(UUID id) {
-        return agendamentoRepository.findById(id).get();
+    public AgendamentoModel findById(UUID id) throws Exception {
+        return agendamentoRepository.findById(id).orElseThrow(
+            () -> new InternalServerError("Agendamento não encontrado")
+        );
     }
 
     public List<AgendamentoModel> findByData(LocalDate date) {
