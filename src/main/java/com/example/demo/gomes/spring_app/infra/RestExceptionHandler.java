@@ -1,5 +1,6 @@
 package com.example.demo.gomes.spring_app.infra;
 
+import com.example.demo.gomes.spring_app.exceptions.BadRequest;
 import com.example.demo.gomes.spring_app.exceptions.InternalServerError;
 import com.example.demo.gomes.spring_app.models.ExceptionModel;
 
@@ -18,7 +19,15 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
         ExceptionModel exceptionModel = new ExceptionModel(ex.getMessage(), request.getDescription(false), java.time.LocalDate.now());
 
-        return new ResponseEntity<>(exceptionModel, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(exceptionModel, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BadRequest.class)
+    public final ResponseEntity<ExceptionModel> handleBadRequestException(Exception ex, WebRequest request) {
+
+        ExceptionModel exceptionModel = new ExceptionModel(ex.getMessage(), request.getDescription(false), java.time.LocalDate.now());
+
+        return new ResponseEntity<>(exceptionModel, HttpStatus.BAD_REQUEST);
     }
 
 }
