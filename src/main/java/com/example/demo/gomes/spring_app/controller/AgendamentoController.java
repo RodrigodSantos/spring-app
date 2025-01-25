@@ -30,7 +30,7 @@ public class AgendamentoController {
     }
 
     @GetMapping("/{id}")
-    public AgendamentoModel findById(@PathVariable UUID id) throws Exception {
+    public AgendamentoModel findById(@PathVariable String id) throws Exception {
         return agendamentoService.findById(id);
     }
 
@@ -40,12 +40,12 @@ public class AgendamentoController {
     }
 
     @GetMapping("/veiculo/{veiculoId}")
-    public List<AgendamentoModel> findByVeiculo(@PathVariable UUID veiculoId) {
+    public List<AgendamentoModel> findByVeiculo(@PathVariable String veiculoId) {
         return agendamentoService.findByVeiculo(veiculoId);
     }
 
     @GetMapping("/tecnico/{tecnicoId}")
-    public List<AgendamentoModel> findByTecnico(@PathVariable UUID tecnicoId) {
+    public List<AgendamentoModel> findByTecnico(@PathVariable String tecnicoId) {
         return agendamentoService.findByTecnico(tecnicoId);
     }
 

@@ -2,12 +2,14 @@ package com.example.demo.gomes.spring_app.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.gomes.spring_app.exceptions.InternalServerError;
+import com.example.demo.gomes.spring_app.exceptions.BadRequest;
+import com.example.demo.gomes.spring_app.exceptions.NotFound;
 import com.example.demo.gomes.spring_app.models.AgendamentoModel;
 import com.example.demo.gomes.spring_app.repository.IAgendamento;
 
@@ -27,22 +29,43 @@ public class AgendamentoService {
         return agendamentoRepository.findAll();
     }
 
-    public AgendamentoModel findById(UUID id) throws Exception {
-        return agendamentoRepository.findById(id).orElseThrow(
-            () -> new InternalServerError("Agendamento não encontrado")
-        );
+    public AgendamentoModel findById(String id) {
+        if (id == null) {
+            throw new NotFound("Id não pode ser nulo");
+        }
+        try {
+            return agendamentoRepository.findById(UUID.fromString(id)).get();
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (NoSuchElementException  e) {
+            throw new NotFound("Id não pode ser nulo");	
+        } catch (Exception e) {
+            throw new NotFound("Agendamento não encontrado");
+        } 
     }
-
+    
     public List<AgendamentoModel> findByData(LocalDate date) {
         return agendamentoRepository.findByData(date);
     }
 
-    public List<AgendamentoModel> findByVeiculo(UUID veiculoId) {
-        return agendamentoRepository.findByVeiculo(veiculoRepository.findById(veiculoId));
+    public List<AgendamentoModel> findByVeiculo(String veiculoId) {
+        try {
+            return agendamentoRepository.findByVeiculo(veiculoRepository.findById(UUID.fromString(veiculoId)));
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (Exception e) {
+            throw new NotFound("Veículo não encontrado");
+        }
     }
 
-    public List<AgendamentoModel> findByTecnico(UUID tecnico) {
-        return agendamentoRepository.findByTecnico(tecnicoRepository.findById(tecnico));
+    public List<AgendamentoModel> findByTecnico(String tecnicoId) {
+        try {
+            return agendamentoRepository.findByTecnico(tecnicoRepository.findById(UUID.fromString(tecnicoId)));
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (Exception e) {
+            throw new NotFound("Técnico não encontrado");
+        }
     }
 
     public AgendamentoModel save(AgendamentoModel agendamento) {
