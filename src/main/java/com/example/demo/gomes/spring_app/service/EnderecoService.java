@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.gomes.spring_app.exceptions.BadRequest;
+import com.example.demo.gomes.spring_app.exceptions.NotFound;
 import com.example.demo.gomes.spring_app.models.EnderecoModel;
 import com.example.demo.gomes.spring_app.repository.IEndereco;
 @Service
@@ -19,7 +21,13 @@ public class EnderecoService {
     }
 
     public EnderecoModel findById(UUID id) {
-        return enderecoRepository.findById(id).get();
+        try {
+            return enderecoRepository.findById(id).get();
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (Exception e) {
+            throw new NotFound("Endereço não encontrado");
+        }
     }
 
     public EnderecoModel save(EnderecoModel endereco) {

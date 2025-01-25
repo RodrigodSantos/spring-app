@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.gomes.spring_app.exceptions.BadRequest;
+import com.example.demo.gomes.spring_app.exceptions.NotFound;
 import com.example.demo.gomes.spring_app.models.ProprietarioContatoModel;
 import com.example.demo.gomes.spring_app.repository.IProprietarioContato;
 
@@ -26,7 +28,13 @@ public class ProprietarioContatoService {
     }
 
     public ProprietarioContatoModel findById(UUID id) {
-        return proprietarioContatoRepository.findById(id).get();
+        try {
+            return proprietarioContatoRepository.findById(id).get();
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (Exception e) {
+            throw new NotFound("ProprietárioContato não encontrado");
+        }
     }
 
     public ProprietarioContatoModel save(ProprietarioContatoModel proprietarioContato) {

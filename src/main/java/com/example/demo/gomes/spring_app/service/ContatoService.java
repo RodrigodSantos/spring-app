@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.gomes.spring_app.exceptions.BadRequest;
+import com.example.demo.gomes.spring_app.exceptions.NotFound;
 import com.example.demo.gomes.spring_app.models.ContatoModel;
 import com.example.demo.gomes.spring_app.repository.IContato;
 
@@ -20,7 +22,13 @@ public class ContatoService {
     }
 
     public ContatoModel findById(UUID id) {
-        return contatoRepository.findById(id).get();
+        try {
+            return contatoRepository.findById(id).get();
+        } catch (IllegalArgumentException e) {
+            throw new BadRequest("Id inválido");
+        } catch (Exception e) {
+            throw new NotFound("Contato não encontrado");
+        }
     }
 
     public ContatoModel save(ContatoModel contato) {
