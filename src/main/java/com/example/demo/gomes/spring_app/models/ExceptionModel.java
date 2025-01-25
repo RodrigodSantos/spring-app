@@ -1,6 +1,6 @@
 package com.example.demo.gomes.spring_app.models;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class ExceptionModel {
     private String message;
     private String description;
-    private LocalDate date;
+    private LocalDateTime date;
 }
