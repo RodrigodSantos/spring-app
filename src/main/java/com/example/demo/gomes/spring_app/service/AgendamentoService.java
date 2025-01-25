@@ -2,7 +2,6 @@ package com.example.demo.gomes.spring_app.service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +29,10 @@ public class AgendamentoService {
     }
 
     public AgendamentoModel findById(String id) {
-        if (id == null) {
-            throw new NotFound("Id não pode ser nulo");
-        }
         try {
             return agendamentoRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
-        } catch (NoSuchElementException  e) {
-            throw new NotFound("Id não pode ser nulo");	
         } catch (Exception e) {
             throw new NotFound("Agendamento não encontrado");
         } 
