@@ -21,9 +21,9 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
-    public PessoaModel findById(UUID id) {
+    public PessoaModel findById(String id) {
         try {
-            return pessoaRepository.findById(id).get();
+            return pessoaRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {

@@ -32,7 +32,7 @@ public class ProprietarioController {
     }
 
     @GetMapping("/{id}")
-    public ProprietarioModel getProprietario(@PathVariable UUID id) {
+    public ProprietarioModel getProprietario(@PathVariable String id) {
         return proprietarioService.findById(id);
     }
 

@@ -29,7 +29,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public PessoaModel findById(@PathVariable UUID id) {
+    public PessoaModel findById(@PathVariable String id) {
         return pessoaService.findById(id);
     }
 

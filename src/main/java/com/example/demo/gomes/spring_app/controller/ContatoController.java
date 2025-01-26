@@ -29,7 +29,7 @@ public class ContatoController {
     }
 
     @GetMapping("/{id}")
-    public ContatoModel findById(@PathVariable UUID id) {
+    public ContatoModel findById(@PathVariable String id) {
         return contatoService.findById(id);
     }
 

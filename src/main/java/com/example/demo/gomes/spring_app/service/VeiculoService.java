@@ -17,13 +17,16 @@ public class VeiculoService {
     @Autowired
     private IVeiculo veiculoRepository;
 
+    @Autowired
+    private ProprietarioService proprietarioService;
+
     public List<VeiculoModel> findAll() {
         return veiculoRepository.findAll();
     }
 
-    public VeiculoModel findById(UUID id) {
+    public VeiculoModel findById(String id) {
         try {
-            return veiculoRepository.findById(id).get();
+            return veiculoRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {
@@ -32,6 +35,7 @@ public class VeiculoService {
     }
 
     public VeiculoModel save(VeiculoModel veiculo) {
+        veiculo.setProprietario(proprietarioService.findById(veiculo.getProprietario().getId().toString()));
         return veiculoRepository.save(veiculo);
     }
 

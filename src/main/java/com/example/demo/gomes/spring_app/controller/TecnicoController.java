@@ -30,7 +30,7 @@ public class TecnicoController {
     }
 
     @GetMapping("/{id}")
-    public TecnicoModel findById(@PathVariable UUID id) {
+    public TecnicoModel findById(@PathVariable String id) {
         return tecnicoService.findById(id);
     }
 

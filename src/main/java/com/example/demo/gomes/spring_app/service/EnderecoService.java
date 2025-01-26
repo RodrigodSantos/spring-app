@@ -16,13 +16,16 @@ public class EnderecoService {
     @Autowired
     private IEndereco enderecoRepository;
 
+    @Autowired
+    private PessoaService pessoaService;
+
     public List<EnderecoModel> findAll() {
         return enderecoRepository.findAll();
     }
 
-    public EnderecoModel findById(UUID id) {
+    public EnderecoModel findById(String id) {
         try {
-            return enderecoRepository.findById(id).get();
+            return enderecoRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {
@@ -31,6 +34,7 @@ public class EnderecoService {
     }
 
     public EnderecoModel save(EnderecoModel endereco) {
+        endereco.setPessoa(pessoaService.findById(endereco.getPessoa().getId().toString()));
         return enderecoRepository.save(endereco);
     }
 

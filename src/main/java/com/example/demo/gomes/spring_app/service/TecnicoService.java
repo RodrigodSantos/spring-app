@@ -26,9 +26,9 @@ public class TecnicoService {
         return tecnicoRepository.findAll();
     }
 
-    public TecnicoModel findById(UUID id) {
+    public TecnicoModel findById(String id) {
         try {
-            return tecnicoRepository.findById(id).get();
+            return tecnicoRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {

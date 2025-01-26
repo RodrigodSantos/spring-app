@@ -19,10 +19,13 @@ public class AgendamentoService {
     private IAgendamento agendamentoRepository;
 
     @Autowired
-    private VeiculoService veiculoRepository;
+    private VeiculoService veiculoService;
 
     @Autowired
-    private TecnicoService tecnicoRepository;
+    private EnderecoService enderecoService;
+
+    @Autowired
+    private TecnicoService tecnicoService;
 
     public List<AgendamentoModel> findAll() {
         return agendamentoRepository.findAll();
@@ -44,7 +47,7 @@ public class AgendamentoService {
 
     public List<AgendamentoModel> findByVeiculo(String veiculoId) {
         try {
-            return agendamentoRepository.findByVeiculo(veiculoRepository.findById(UUID.fromString(veiculoId)));
+            return agendamentoRepository.findByVeiculo(veiculoService.findById(veiculoId));
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {
@@ -54,7 +57,7 @@ public class AgendamentoService {
 
     public List<AgendamentoModel> findByTecnico(String tecnicoId) {
         try {
-            return agendamentoRepository.findByTecnico(tecnicoRepository.findById(UUID.fromString(tecnicoId)));
+            return agendamentoRepository.findByTecnico(tecnicoService.findById(tecnicoId));
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {
@@ -63,6 +66,9 @@ public class AgendamentoService {
     }
 
     public AgendamentoModel save(AgendamentoModel agendamento) {
+        veiculoService.findById(agendamento.getVeiculo().getId().toString());
+        enderecoService.findById(agendamento.getEndereco().getId().toString());
+        tecnicoService.findById(agendamento.getTecnico().getId().toString());
         return agendamentoRepository.save(agendamento);
     }
 

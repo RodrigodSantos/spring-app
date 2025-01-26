@@ -32,7 +32,7 @@ public class VeiculoController {
     }
 
     @GetMapping("/{id}")
-    public VeiculoModel getVeiculo(@PathVariable UUID id) {
+    public VeiculoModel getVeiculo(@PathVariable String id) {
         return veiculoService.findById(id);
     }
     
@@ -42,9 +42,9 @@ public class VeiculoController {
     }
 
     @PutMapping("/{id}")
-    public VeiculoModel update(@PathVariable UUID id, @RequestBody VeiculoModel veiculo) {
+    public VeiculoModel update(@PathVariable String id, @RequestBody VeiculoModel veiculo) {
         veiculoService.findById(id);
-        return veiculoService.update(id, veiculo);
+        return veiculoService.update(UUID.fromString(id), veiculo);
     }
 
     @DeleteMapping("/{id}")

@@ -26,9 +26,9 @@ public class ProprietarioService {
         return proprietarioRepository.findAll();
     }
     
-    public ProprietarioModel findById(UUID id) {
+    public ProprietarioModel findById(String id) {
         try {
-            return proprietarioRepository.findById(id).get();
+            return proprietarioRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {

@@ -29,7 +29,7 @@ public class EnderecoController {
     }
 
     @GetMapping("/{id}")
-    public EnderecoModel getEndereco(@PathVariable UUID id) {
+    public EnderecoModel getEndereco(@PathVariable String id) {
         return enderecoService.findById(id);
     }
 
@@ -39,9 +39,9 @@ public class EnderecoController {
     }
 
     @PutMapping("/{id}")
-    public EnderecoModel update(@PathVariable UUID id, @RequestBody EnderecoModel endereco) {
+    public EnderecoModel update(@PathVariable String id, @RequestBody EnderecoModel endereco) {
         enderecoService.findById(id);
-        return enderecoService.update(id, endereco);
+        return enderecoService.update(UUID.fromString(id), endereco);
     }
 
     @DeleteMapping("/{id}")

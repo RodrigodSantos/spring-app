@@ -21,9 +21,9 @@ public class ContatoService {
         return contatoRepository.findAll();
     }
 
-    public ContatoModel findById(UUID id) {
+    public ContatoModel findById(String id) {
         try {
-            return contatoRepository.findById(id).get();
+            return contatoRepository.findById(UUID.fromString(id)).get();
         } catch (IllegalArgumentException e) {
             throw new BadRequest("Id inválido");
         } catch (Exception e) {
