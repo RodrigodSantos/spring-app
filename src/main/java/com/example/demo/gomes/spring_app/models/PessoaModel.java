@@ -27,6 +27,7 @@ public class PessoaModel {
     private String cpf;
     private String dataNascimento;
     private String sexo;
+    private String senha;
     private boolean isVisible = true;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
