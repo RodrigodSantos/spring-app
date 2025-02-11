@@ -25,6 +25,7 @@ public class PessoaModel {
 
     private String nome;
     private String cpf;
+    private String email;
     private String dataNascimento;
     private String sexo;
     private String senha;
